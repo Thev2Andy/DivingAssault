@@ -21,6 +21,8 @@ public class WaveSystem : MonoBehaviour
     [Header("References.")]
     public HealthSystem HealthSystem;
     public Camera Camera;
+    public AudioSource AudioSource;
+    public AudioClip WaveSound;
 
     [Header("UI.")]
     public CanvasGroup WaveUI;
@@ -115,10 +117,11 @@ public class WaveSystem : MonoBehaviour
         }
     }
 
-    public void ShowWaveUI() {
+    public void ShowWaveUI()
+    {
         WaveText.text = $"Wave <color=lightblue>{Wave}</color>.";
         WaveUILifetime = WaveUIDuration;
-        Debug.LogWarning("might want to get some audio going now in here");
+        AudioSource.PlayOneShot(WaveSound);
     }
 
     private Vector2 GetRandomPositionOutsideViewport() {
