@@ -16,7 +16,7 @@ public class DeathScreen : MonoBehaviour
 
 
     private void OnEnable() {
-        WaveText.text = "You got to wave <color=lightblue>{((WaveSystem.Instance != null) ? WaveSystem.Instance.Wave : -1)}</color>.";
+        WaveText.text = $"You got to wave <color=lightblue>{((WaveSystem.Instance != null) ? WaveSystem.Instance.Wave : -1)}</color>.";
     }
 
     private void Update() {

@@ -1050,7 +1050,7 @@ MonoBehaviour:
   DetectionRange: 100
   DetectionLayerMask:
     serializedVersion: 2
-    m_Bits: 3895
+    m_Bits: 17719
   AttackRange: 5
   InitialStaticRagdollTorqueMultiplier: 1.45
   InitialRagdollTorque: 16.5
@@ -1064,7 +1064,7 @@ MonoBehaviour:
   BaseDamage: 49
   ShootingLayerMask:
     serializedVersion: 2
-    m_Bits: 3895
+    m_Bits: 34103
   ImpactForce: 437.5
   ImpactEffect: {fileID: 7051322765016691584, guid: b9b844f134afeff48a645f3b572d6bbe,
     type: 3}

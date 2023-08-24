@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3180764676988163688}
   - component: {fileID: 3180764676988163691}
   - component: {fileID: 3180764676988163690}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Label Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -191,7 +191,8 @@ GameObject:
   - component: {fileID: 3180764678196646218}
   - component: {fileID: 3180764678196646216}
   - component: {fileID: 4511699950879189958}
-  m_Layer: 0
+  - component: {fileID: 329054690396222293}
+  m_Layer: 15
   m_Name: Crate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -476,3 +477,16 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &329054690396222293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3180764678196646231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb4b6eafa0a72cf47aed59c34cb99745, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TotalLifetime: 60

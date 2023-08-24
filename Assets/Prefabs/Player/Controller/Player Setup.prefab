@@ -54,7 +54,7 @@ MonoBehaviour:
   Damage: 31
   LayerMask:
     serializedVersion: 2
-    m_Bits: 3895
+    m_Bits: 34103
   ImpactForce: 262.5
   ImpactEffect: {fileID: 7051322765016691584, guid: b9b844f134afeff48a645f3b572d6bbe,
     type: 3}
@@ -3318,7 +3318,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2671729751165701085}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3908,7 +3908,7 @@ RectTransform:
   - {fileID: 943864734030553825}
   - {fileID: 2209619468117802763}
   m_Father: {fileID: 8582601118653876283}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -4011,10 +4011,9 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2671729752318903053}
-  - {fileID: 2671729751953535231}
   - {fileID: 3238455312469212694}
   m_Father: {fileID: 8582601118653876283}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -5586,12 +5585,12 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2671729751953535228}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 2671729751165701085}
-  m_RootOrder: 1
+  m_Father: {fileID: 8808593910861173254}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -5620,7 +5619,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 0}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -8966,8 +8965,89 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 358d74350e5f9d34e98f65320d84a954, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AvailableObjects:
+  - Identifier: Assault Rifle
+    Object: {fileID: 8979541366186314557, guid: c3118616f4c47574b93c9e60120ebc4b,
+      type: 3}
+    Launch: 1
+  - Identifier: Pistol
+    Object: {fileID: 8979541366186314557, guid: 2a3492c4027e0224b9bab05617243a4c,
+      type: 3}
+    Launch: 1
+  - Identifier: SMG
+    Object: {fileID: 31567163190231925, guid: 58993612412d9854d8c247388da9f587, type: 3}
+    Launch: 1
+  - Identifier: Sniper Rifle
+    Object: {fileID: 8979541366186314557, guid: 53d571b8e55ccb6438e842a5f373c3eb,
+      type: 3}
+    Launch: 1
+  - Identifier: Assault Rifle Enemy
+    Object: {fileID: 3914128649168389708, guid: be9a6b89f655a724a8dee19b9467ffab,
+      type: 3}
+    Launch: 0
+  - Identifier: Pistol Enemy
+    Object: {fileID: 6428259396521315310, guid: 580c477c0a7404e42b6ef9b597bebecb,
+      type: 3}
+    Launch: 0
+  - Identifier: SMG Enemy
+    Object: {fileID: 3914128649168389708, guid: eff2573d4a737bb4d8fb69ee9b2a4a36,
+      type: 3}
+    Launch: 0
+  - Identifier: Sniper Rifle Enemy
+    Object: {fileID: 6428259396521315310, guid: 314b01b81c794bb4e9db4f4d303f4295,
+      type: 3}
+    Launch: 0
+  - Identifier: Crate
+    Object: {fileID: 3180764678196646231, guid: 9cd9c4e668f7ebe478a56f36d58cf6ae,
+      type: 3}
+    Launch: 1
+  - Identifier: Medkit
+    Object: {fileID: 8591949117826041388, guid: d8b0f265a950ad247bafdb582fc487d1,
+      type: 3}
+    Launch: 1
+  SpawnRules:
+  - Objects:
+    - Identifier: Pistol Enemy
+      Delay: 0
+      Count: 1
+      PerInstanceDelay: 0
+    - Identifier: SMG Enemy
+      Delay: 1.95
+      Count: 1
+      PerInstanceDelay: 0
+    Condition: ^Wave < 7^
+  - Objects:
+    - Identifier: Sniper Rifle Enemy
+      Delay: 0
+      Count: 1
+      PerInstanceDelay: 0
+    Condition: $(^Wave % 7 = 0^) & ^Wave > 0^$
+  - Objects:
+    - Identifier: Medkit
+      Delay: 0
+      Count: 1
+      PerInstanceDelay: 0
+    - Identifier: Crate
+      Delay: 0
+      Count: 3
+      PerInstanceDelay: 0
+    Condition: ^Wave % 2 = 0^
+  - Objects:
+    - Identifier: Assault Rifle Enemy
+      Delay: 0
+      Count: 2
+      PerInstanceDelay: 0
+    Condition: ^Wave > 7^
+  BaseWaveInterval: 16.5
+  StartDelay: 4.95
+  DifficultyAffectsSpawnInterval: 0
+  TimeAllowedOutsideViewport: 15
+  LinearLaunchSpeed: 9.15
+  AngularLaunchSpeed: 14.5
+  HealthSystem: {fileID: 4869582368935956509}
+  Camera: {fileID: 8582601118808614282}
   WaveUI: {fileID: 7282198958436016559}
-  WaveText: {fileID: 0}
+  WaveText: {fileID: 4639989557517438847}
   WaveUIInterpolationTime: 15
   WaveUIDuration: 4.95
 --- !u!1 &5865850389206363383
@@ -10184,7 +10264,7 @@ MonoBehaviour:
   Damage: 450
   LayerMask:
     serializedVersion: 2
-    m_Bits: 3895
+    m_Bits: 34103
   ImpactForce: 437.5
   ImpactEffect: {fileID: 7051322765016691584, guid: b9b844f134afeff48a645f3b572d6bbe,
     type: 3}
@@ -11735,6 +11815,42 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 2
   m_VerticalFit: 0
+--- !u!1 &8415839038988325869
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8808593910861173254}
+  m_Layer: 0
+  m_Name: Fader UI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &8808593910861173254
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8415839038988325869}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 2671729751953535231}
+  m_Father: {fileID: 8582601118653876283}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &8499116248024099655
 GameObject:
   m_ObjectHideFlags: 0
@@ -12488,7 +12604,7 @@ MonoBehaviour:
   Damage: 14
   LayerMask:
     serializedVersion: 2
-    m_Bits: 3895
+    m_Bits: 34103
   ImpactForce: 175
   ImpactEffect: {fileID: 7051322765016691584, guid: b9b844f134afeff48a645f3b572d6bbe,
     type: 3}
@@ -12948,8 +13064,9 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 766474573517081798}
   - {fileID: 2671729751165701085}
+  - {fileID: 766474573517081798}
+  - {fileID: 8808593910861173254}
   - {fileID: 2671729750941633873}
   m_Father: {fileID: 8582601119608666530}
   m_RootOrder: 0
@@ -13484,7 +13601,7 @@ MonoBehaviour:
   - {x: -0.49913645, y: 0.49988115, z: 0}
   m_ShapePathHash: 1824833989
   m_Mesh: {fileID: 0}
-  m_InstanceId: -1438
+  m_InstanceId: -324036
 --- !u!1 &8582601119112213511
 GameObject:
   m_ObjectHideFlags: 0
@@ -13897,7 +14014,7 @@ MonoBehaviour:
   Damage: 21
   LayerMask:
     serializedVersion: 2
-    m_Bits: 3895
+    m_Bits: 34103
   ImpactForce: 175
   ImpactEffect: {fileID: 7051322765016691584, guid: b9b844f134afeff48a645f3b572d6bbe,
     type: 3}
@@ -14701,7 +14818,7 @@ RectTransform:
   - {fileID: 5163126141014739768}
   - {fileID: 3373601676046795343}
   m_Father: {fileID: 8582601118653876283}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}

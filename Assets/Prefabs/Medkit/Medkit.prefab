@@ -70,6 +70,7 @@ GameObject:
   - component: {fileID: 8591949117826041384}
   - component: {fileID: 8591949117826041387}
   - component: {fileID: 8591949117826041386}
+  - component: {fileID: -3582300234357942446}
   m_Layer: 0
   m_Name: Medkit
   m_TagString: Untagged
@@ -195,3 +196,16 @@ MonoBehaviour:
   PickupSoundVolume: 0.45
   PickupEffect: {fileID: 7051322765016691584, guid: 4d7561ff9d81fac41b4a3c8ad0dd0b83,
     type: 3}
+--- !u!114 &-3582300234357942446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8591949117826041388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb4b6eafa0a72cf47aed59c34cb99745, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TotalLifetime: 30

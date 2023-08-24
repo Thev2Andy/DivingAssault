@@ -101,7 +101,8 @@ public class EnemyAI : MonoBehaviour
                     WeaponRotator.PointTorwards(Player.position, 0f, true);
 
 
-                    if (WeaponShotTimer <= 0f && PlayerRaycast.distance <= AttackRange)
+                    Vector2 ViewportLocation = Camera.main.WorldToViewportPoint(this.transform.position);
+                    if (WeaponShotTimer <= 0f && PlayerRaycast.distance <= AttackRange && (ViewportLocation.x == Mathf.Clamp01(ViewportLocation.x) && ViewportLocation.y == Mathf.Clamp01(ViewportLocation.y)))
                     {
                         RaycastHit2D Hit = Physics2D.Raycast(FirePoint.position, FirePoint.up, WeaponRange, ShootingLayerMask);
                         WeaponShotTimer = 60 / RateOfFireInRPM;

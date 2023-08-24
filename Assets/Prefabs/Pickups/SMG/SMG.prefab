@@ -177,6 +177,7 @@ GameObject:
   - component: {fileID: 31567163190231927}
   - component: {fileID: 31567163190231926}
   - component: {fileID: 31567163190231921}
+  - component: {fileID: -8122338301256003297}
   m_Layer: 9
   m_Name: SMG
   m_TagString: Untagged
@@ -302,3 +303,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Identifier: SMG
+--- !u!114 &-8122338301256003297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 31567163190231925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb4b6eafa0a72cf47aed59c34cb99745, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TotalLifetime: 30
