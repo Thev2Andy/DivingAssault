@@ -16,7 +16,7 @@ public class Medkit : MonoBehaviour
             PlayerHealthSystem.Health = PlayerHealthSystem.InitialHealth;
             Camera.main.GetComponent<AudioSource>()?.PlayOneShot(PickupSound, PickupSoundVolume);
 
-            Instantiate(PickupEffect, this.transform.position, Quaternion.identity);
+            Instantiate(PickupEffect, PlayerHealthSystem.transform.position, Quaternion.identity);
 
             if (CameraShaker.Instance != null) {
                 CameraShaker.Instance.ShakeOnce((19.5f * (float.Parse((Settings.Get("Screenshake Intensity", 1f).ToString())))), 1f, 0f, 0.65f);

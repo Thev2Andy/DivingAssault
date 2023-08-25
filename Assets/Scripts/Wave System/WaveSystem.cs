@@ -62,7 +62,7 @@ public class WaveSystem : MonoBehaviour
                 }
 
                 Vector2 ViewportLocation = Camera.WorldToViewportPoint(SpawnedObjects[I].Object.transform.position);
-                if ((ViewportLocation.x != Mathf.Clamp01(ViewportLocation.x) || ViewportLocation.y != Mathf.Clamp01(ViewportLocation.y)) && (System.DateTime.Now - SpawnedObjects[I].Time).TotalSeconds >= TimeAllowedOutsideViewport) {
+                if ((ViewportLocation.x != Mathf.Clamp01(ViewportLocation.x) || ViewportLocation.y != Mathf.Clamp01(ViewportLocation.y)) && (System.DateTime.Now - SpawnedObjects[I].Time).TotalSeconds >= TimeAllowedOutsideViewport && AvailableObjects[this.ResolveObjectByIdentifier(SpawnedObjects[I].Identifier)].DespawnOutsideViewport) {
                     Destroy(SpawnedObjects[I].Object);
                     SpawnedObjects[I] = null;
                 }
@@ -93,18 +93,12 @@ public class WaveSystem : MonoBehaviour
                         }
 
 
-                        int ObjectDefinitionIndex = -1;
-                        for (int J = 0; J < AvailableObjects.Length; J++)
-                        {
-                            if (SpawnruleObject.Identifier == AvailableObjects[J].Identifier) {
-                                ObjectDefinitionIndex = J;
-                            }
-                        }
+                        int ObjectDefinitionIndex = this.ResolveObjectByIdentifier(SpawnruleObject.Identifier);
 
 
                         Vector2 SpawnPoint = Camera.ViewportToWorldPoint(this.GetRandomPositionOutsideViewport());
                         GameObject SpawnedObject = Instantiate(AvailableObjects[ObjectDefinitionIndex].Object, SpawnPoint, Quaternion.identity);
-                        SpawnedObjects.Add(new WaveSystem.SpawnedObject(SpawnedObject, System.DateTime.Now));
+                        SpawnedObjects.Add(new WaveSystem.SpawnedObject(SpawnruleObject.Identifier, SpawnedObject, System.DateTime.Now));
                         if (AvailableObjects[I].Launch && SpawnedObject.TryGetComponent<Rigidbody2D>(out Rigidbody2D Rigidbody))
                         {
                             Vector2 LaunchTarget = Camera.ViewportToWorldPoint(new Vector3(Random.value, Random.value));
@@ -127,6 +121,22 @@ public class WaveSystem : MonoBehaviour
     private Vector2 GetRandomPositionOutsideViewport() {
         return new Vector2(((Random.value < 0.5f) ? Random.Range(-2f, -0.5f) : Random.Range(1.5f, 2f)), ((Random.value < 0.5f) ? Random.Range(-2f, -0.5f) : Random.Range(1.5f, 2f)));
     }
+
+    private int ResolveObjectByIdentifier(string Identifier)
+    {
+        int ObjectDefinitionIndex = -1;
+        for (int J = 0; J < AvailableObjects.Length; J++)
+        {
+            if (Identifier == AvailableObjects[J].Identifier)
+            {
+                ObjectDefinitionIndex = J;
+                break;
+            }
+        }
+
+        return ObjectDefinitionIndex;
+    }
+
 
     private void Update()
     {
@@ -174,16 +184,19 @@ public class WaveSystem : MonoBehaviour
         public string Identifier;
         public GameObject Object;
         public bool Launch;
+        public bool DespawnOutsideViewport;
     }
 
     public class SpawnedObject
     {
+        public string Identifier;
         public GameObject Object;
         public System.DateTime Time;
 
 
 
-        public SpawnedObject(GameObject Object, System.DateTime Time) {
+        public SpawnedObject(string Identifier, GameObject Object, System.DateTime Time) {
+            this.Identifier = Identifier;
             this.Object = Object;
             this.Time = Time;
         }

@@ -71,6 +71,7 @@ MonoBehaviour:
   EjectionTorque: 450
   RecoilForce: 138.75
   RateOfFireInRPM: 600
+  AllowUsingOutsideCameraFrustum: 0
   Automatic: 1
   LookCamera: {fileID: 8582601118808614282}
   Look: {fileID: 115893765}
@@ -8971,41 +8972,51 @@ MonoBehaviour:
     Object: {fileID: 8979541366186314557, guid: c3118616f4c47574b93c9e60120ebc4b,
       type: 3}
     Launch: 1
+    DespawnOutsideViewport: 1
   - Identifier: Pistol
     Object: {fileID: 8979541366186314557, guid: 2a3492c4027e0224b9bab05617243a4c,
       type: 3}
     Launch: 1
+    DespawnOutsideViewport: 1
   - Identifier: SMG
     Object: {fileID: 31567163190231925, guid: 58993612412d9854d8c247388da9f587, type: 3}
     Launch: 1
+    DespawnOutsideViewport: 1
   - Identifier: Sniper Rifle
     Object: {fileID: 8979541366186314557, guid: 53d571b8e55ccb6438e842a5f373c3eb,
       type: 3}
     Launch: 1
+    DespawnOutsideViewport: 1
   - Identifier: Assault Rifle Enemy
     Object: {fileID: 3914128649168389708, guid: be9a6b89f655a724a8dee19b9467ffab,
       type: 3}
     Launch: 0
+    DespawnOutsideViewport: 0
   - Identifier: Pistol Enemy
     Object: {fileID: 6428259396521315310, guid: 580c477c0a7404e42b6ef9b597bebecb,
       type: 3}
     Launch: 0
+    DespawnOutsideViewport: 0
   - Identifier: SMG Enemy
     Object: {fileID: 3914128649168389708, guid: eff2573d4a737bb4d8fb69ee9b2a4a36,
       type: 3}
     Launch: 0
+    DespawnOutsideViewport: 0
   - Identifier: Sniper Rifle Enemy
     Object: {fileID: 6428259396521315310, guid: 314b01b81c794bb4e9db4f4d303f4295,
       type: 3}
     Launch: 0
+    DespawnOutsideViewport: 0
   - Identifier: Crate
     Object: {fileID: 3180764678196646231, guid: 9cd9c4e668f7ebe478a56f36d58cf6ae,
       type: 3}
     Launch: 1
+    DespawnOutsideViewport: 1
   - Identifier: Medkit
     Object: {fileID: 8591949117826041388, guid: d8b0f265a950ad247bafdb582fc487d1,
       type: 3}
     Launch: 1
+    DespawnOutsideViewport: 1
   SpawnRules:
   - Objects:
     - Identifier: Pistol Enemy
@@ -9025,13 +9036,13 @@ MonoBehaviour:
     Condition: $(^Wave % 7 = 0^) & ^Wave > 0^$
   - Objects:
     - Identifier: Medkit
-      Delay: 0
-      Count: 1
-      PerInstanceDelay: 0
+      Delay: 3
+      Count: 2
+      PerInstanceDelay: 1
     - Identifier: Crate
-      Delay: 0
+      Delay: 1
       Count: 3
-      PerInstanceDelay: 0
+      PerInstanceDelay: 1
     Condition: ^Wave % 2 = 1^
   - Objects:
     - Identifier: Assault Rifle Enemy
@@ -10354,6 +10365,7 @@ MonoBehaviour:
   EjectionTorque: 450
   RecoilForce: 195
   RateOfFireInRPM: 450
+  AllowUsingOutsideCameraFrustum: 0
   Automatic: 0
   LookCamera: {fileID: 8582601118808614282}
   Look: {fileID: 278927164172160784}
@@ -12176,6 +12188,7 @@ GameObject:
   - component: {fileID: 8582601118167894790}
   - component: {fileID: 8582601118167894787}
   - component: {fileID: 8223136388357288135}
+  - component: {fileID: 1627405974545930179}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -12191,7 +12204,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8582601118167894788}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.5, y: 0.75, z: 0}
+  m_LocalPosition: {x: 0, y: 7.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8582601119091560028}
@@ -12257,6 +12270,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Movement: {fileID: 5349077149464065332}
+  Camera: {fileID: 8582601118808614282}
 --- !u!114 &4869582368935956509
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12288,6 +12302,8 @@ MonoBehaviour:
   - {r: 0.9411765, g: 0.22745098, b: 0.2784314, a: 1}
   - {r: 0.6862745, g: 0.35686275, b: 0.35686275, a: 1}
   - {r: 0.7372549, g: 0.30588236, b: 0.23921569, a: 1}
+  ColorInterpolationTime: 12.5
+  DamageColor: {r: 1, g: 0, b: 0.25490198, a: 1}
   PlayerControllerObjects:
   - {fileID: 8582601119091560029}
   - {fileID: 8582601119414111827}
@@ -12305,6 +12321,7 @@ MonoBehaviour:
   Inventory: {fileID: 2671729751102844502}
   HurtFXVolume: {fileID: 5496599182774651148}
   Health: 100
+  SelectedColor: {r: 0, g: 0, b: 0, a: 0}
   InitialHealth: 0
   LastHealth: 0
   IsDead: 0
@@ -12468,6 +12485,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1627405974545930179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8582601118167894788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 601ff818014923f41bb5a7ef944cb886, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 8582601118167894785}
+  Camera: {fileID: 8582601118808614282}
+  LaunchSpeed: 15
 --- !u!1 &8582601118233759034
 GameObject:
   m_ObjectHideFlags: 0
@@ -12694,6 +12726,7 @@ MonoBehaviour:
   EjectionTorque: 450
   RecoilForce: 92.5
   RateOfFireInRPM: 600
+  AllowUsingOutsideCameraFrustum: 0
   Automatic: 1
   LookCamera: {fileID: 8582601118808614282}
   Look: {fileID: 8582601118298181703}
@@ -13674,7 +13707,7 @@ MonoBehaviour:
   - {x: -0.49913645, y: 0.49988115, z: 0}
   m_ShapePathHash: 1824833989
   m_Mesh: {fileID: 0}
-  m_InstanceId: -885816
+  m_InstanceId: -1893184
 --- !u!1 &8582601119112213511
 GameObject:
   m_ObjectHideFlags: 0
@@ -14104,6 +14137,7 @@ MonoBehaviour:
   EjectionTorque: 450
   RecoilForce: 92.5
   RateOfFireInRPM: 600
+  AllowUsingOutsideCameraFrustum: 0
   Automatic: 0
   LookCamera: {fileID: 8582601118808614282}
   Look: {fileID: 8582601119450606274}
@@ -14513,7 +14547,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b584356a517aae148ae8e35955ce5a62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StartingWeapon: Pistol
   PickupRadius: 1.95
+  AllowDropping: 0
   AvailableEntries:
   - Identifier: Pistol
     WeaponObject: {fileID: 8582601119450606273}

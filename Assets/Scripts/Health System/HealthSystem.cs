@@ -11,6 +11,8 @@ public class HealthSystem : MonoBehaviour
     public GameObject DeathUI;
     public float DeathScreenDelay;
     public Color[] PlayerColorPalette;
+    public float ColorInterpolationTime;
+    public Color DamageColor;
     public GameObject[] PlayerControllerObjects;
     public GameObject[] ObjectsToDisable;
     public float KnockbackMultiplier;
@@ -25,11 +27,16 @@ public class HealthSystem : MonoBehaviour
     public int Health;
 
     // Private / Hidden variables..
+    [HideInInspector] public Color SelectedColor;
     [HideInInspector] public int InitialHealth;
     [HideInInspector] public int LastHealth;
     [HideInInspector] public bool IsDead;
     [HideInInspector] public bool Stunned;
     private bool WasDamaged;
+    private float RedVelocity;
+    private float GreenVelocity;
+    private float BlueVelocity;
+    private float AlphaVelocity;
 
 
     private void Update()
@@ -38,6 +45,16 @@ public class HealthSystem : MonoBehaviour
         {
             float HurtWeightTarget = (1f - (((float)Health) / ((float)InitialHealth)));
             HurtFXVolume.weight = Mathf.Lerp(HurtFXVolume.weight, HurtWeightTarget, (1 - Mathf.Exp(-0.95f * Time.deltaTime)));
+
+
+            Color InterpolatedColor = new Color(1f, 1f, 1f, 1f);
+            InterpolatedColor.r = Mathf.SmoothDamp(PlayerRenderer.color.r, SelectedColor.r, ref RedVelocity, (1 - Mathf.Exp(-ColorInterpolationTime * Time.deltaTime)));
+            InterpolatedColor.g = Mathf.SmoothDamp(PlayerRenderer.color.g, SelectedColor.g, ref GreenVelocity, (1 - Mathf.Exp(-ColorInterpolationTime * Time.deltaTime)));
+            InterpolatedColor.b = Mathf.SmoothDamp(PlayerRenderer.color.b, SelectedColor.b, ref BlueVelocity, (1 - Mathf.Exp(-ColorInterpolationTime * Time.deltaTime)));
+            InterpolatedColor.a = Mathf.SmoothDamp(PlayerRenderer.color.a, SelectedColor.a, ref AlphaVelocity, (1 - Mathf.Exp(-ColorInterpolationTime * Time.deltaTime)));
+
+            PlayerRenderer.color = InterpolatedColor;
+
 
             if (Health < LastHealth && !WasDamaged)
             {
@@ -94,6 +111,16 @@ public class HealthSystem : MonoBehaviour
 
                 Rigidbody.velocity += (KnockbackDirection * (Damage / 5) * KnockbackMultiplier);
 
+
+                if (Damage < Health) {
+                    PlayerRenderer.color = DamageColor;
+                }
+
+                else {
+                    PlayerRenderer.color = SelectedColor;
+                }
+
+
                 WasDamaged = true;
                 Health -= Damage;
 
@@ -117,6 +144,8 @@ public class HealthSystem : MonoBehaviour
     private void Awake()
     {
         PlayerRenderer.color = PlayerColorPalette[Random.Range(0, PlayerColorPalette.Length)];
+        SelectedColor = PlayerRenderer.color;
+
         Health = Mathf.Max(Health, 1);
         InitialHealth = Health;
     }

@@ -11,6 +11,8 @@ public class EnemyAI : MonoBehaviour
     public GravitylessMovement Movement;
     public SpriteRenderer EnemyRenderer;
     public Color[] EnemyColorPalette;
+    public float ColorInterpolationTime;
+    public Color DamageColor;
     public Object[] ObjectsToDestroy;
     public AudioSource EnemyAudioSource;
     public AudioClip HitSound;
@@ -56,9 +58,14 @@ public class EnemyAI : MonoBehaviour
     public float FadeOutTime;
 
     // Private / Hidden variables..
+    [HideInInspector] public Color SelectedColor;
     private float WeaponShotTimer;
     private int LastHealth;
     private bool WasDamaged;
+    private float RedVelocity;
+    private float GreenVelocity;
+    private float BlueVelocity;
+    private float AlphaVelocity;
 
 
     private void Update()
@@ -75,6 +82,16 @@ public class EnemyAI : MonoBehaviour
                     break;
                 }
             }
+
+
+            Color InterpolatedColor = new Color(1f, 1f, 1f, 1f);
+            InterpolatedColor.r = Mathf.SmoothDamp(EnemyRenderer.color.r, SelectedColor.r, ref RedVelocity, (1 - Mathf.Exp(-ColorInterpolationTime * Time.deltaTime)));
+            InterpolatedColor.g = Mathf.SmoothDamp(EnemyRenderer.color.g, SelectedColor.g, ref GreenVelocity, (1 - Mathf.Exp(-ColorInterpolationTime * Time.deltaTime)));
+            InterpolatedColor.b = Mathf.SmoothDamp(EnemyRenderer.color.b, SelectedColor.b, ref BlueVelocity, (1 - Mathf.Exp(-ColorInterpolationTime * Time.deltaTime)));
+            InterpolatedColor.a = Mathf.SmoothDamp(EnemyRenderer.color.a, SelectedColor.a, ref AlphaVelocity, (1 - Mathf.Exp(-ColorInterpolationTime * Time.deltaTime)));
+
+            EnemyRenderer.color = InterpolatedColor;
+
 
             if (WeaponShotTimer > 0) {
                 WeaponShotTimer -= Time.deltaTime;
@@ -185,9 +202,19 @@ public class EnemyAI : MonoBehaviour
 
     public void Damage(int Damage)
     {
+        if (Damage < Health) {
+            EnemyRenderer.color = DamageColor;
+        }
+
+        else {
+            EnemyRenderer.color = SelectedColor;
+        }
+
+
         this.WasDamaged = true;
         this.Health -= Damage;
         this.EnemyAudioSource.PlayOneShot(((Health > 0) ? HitSound : DeathSound));
+
 
         if (Health <= 0)
         {
@@ -232,8 +259,10 @@ public class EnemyAI : MonoBehaviour
         Gizmos.DrawWireSphere(this.transform.position, AttackRange);
     }
 
-    private void Awake() {
+    private void Awake()
+    {
         EnemyRenderer.color = EnemyColorPalette[Random.Range(0, EnemyColorPalette.Length)];
+        SelectedColor = EnemyRenderer.color;
         Health = Mathf.Max(Health, 1);
     }
 }

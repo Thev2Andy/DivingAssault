@@ -129,6 +129,8 @@ MonoBehaviour:
   - {r: 0.9411765, g: 0.22745098, b: 0.2784314, a: 1}
   - {r: 0.6862745, g: 0.35686275, b: 0.35686275, a: 1}
   - {r: 0.7372549, g: 0.30588236, b: 0.23921569, a: 1}
+  ColorInterpolationTime: 12.5
+  DamageColor: {r: 1, g: 0, b: 0.25490198, a: 1}
   ObjectsToDestroy:
   - {fileID: 3914128650042354639}
   - {fileID: 7876271948536960274}
@@ -175,6 +177,7 @@ MonoBehaviour:
   Roughness: 9.5
   FadeInTime: 0
   FadeOutTime: 0.45
+  SelectedColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &7876271948536960274
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -5,7 +5,9 @@ using CameraShake;
 
 public class Inventory : MonoBehaviour
 {
+    public string StartingWeapon;
     public float PickupRadius;
+    public bool AllowDropping;
     public Entry[] AvailableEntries;
 
     public Rigidbody2D PlayerRigidbody;
@@ -63,7 +65,7 @@ public class Inventory : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse1) && HasWeapon && !PauseMenu.Instance.IsPaused)
+        if (Input.GetKeyDown(KeyCode.Mouse1) && HasWeapon && AllowDropping && !PauseMenu.Instance.IsPaused)
         {
             PromptController.Instance.Clear();
             this.Drop(true);
@@ -71,7 +73,7 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public void Pickup(Pickup Pickup)
+    public void Pickup(Pickup Pickup, bool SilentPickup = false)
     {
         Entry NewActiveEntry = null;
         for (int I = 0; I < AvailableEntries.Length; I++)
@@ -96,8 +98,12 @@ public class Inventory : MonoBehaviour
                 CameraShaker.Instance.ShakeOnce((4.5f * (float.Parse((Settings.Get("Screenshake Intensity", 1f).ToString())))), 0f, 0f, 0.65f);
             }
 
+            
+            if (!SilentPickup) {
+                AudioSource.PlayOneShot(PickupSound);
+            }
+
             ActiveEntry = NewActiveEntry;
-            AudioSource.PlayOneShot(PickupSound);
             Pickup.Collect();
         }
     }
@@ -144,6 +150,17 @@ public class Inventory : MonoBehaviour
 
             ActiveEntry = null;
         }
+    }
+
+
+
+    private void Awake()
+    {
+        GameObject InitialPickupObject = new GameObject("Initial Pickup");
+        Pickup InitialPickup = InitialPickupObject.AddComponent<Pickup>();
+        InitialPickup.Identifier = StartingWeapon;
+
+        this.Pickup(InitialPickup, true);
     }
 
 

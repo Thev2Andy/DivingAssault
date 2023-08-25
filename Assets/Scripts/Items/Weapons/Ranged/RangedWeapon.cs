@@ -26,6 +26,7 @@ public class RangedWeapon : MonoBehaviour
     public float EjectionTorque;
     public float RecoilForce;
     public float RateOfFireInRPM;
+    public bool AllowUsingOutsideCameraFrustum;
     public bool Automatic;
 
 
@@ -50,7 +51,11 @@ public class RangedWeapon : MonoBehaviour
         if (!PauseMenu.Instance.IsPaused)
         {
             Look.PointTorwards(LookCamera.ScreenToWorldPoint(Input.mousePosition), LookOffset, true);
-            if (((Automatic) ? Input.GetKey(KeyCode.Mouse0) : Input.GetKeyDown(KeyCode.Mouse0)) && ShotTimer <= 0) this.Shoot();
+
+            Vector3 PlayerViewportLocation = LookCamera.WorldToViewportPoint(PlayerRigidbody.transform.position);
+            if (((Automatic) ? Input.GetKey(KeyCode.Mouse0) : Input.GetKeyDown(KeyCode.Mouse0)) && ShotTimer <= 0 && (PlayerViewportLocation.x == Mathf.Clamp01(PlayerViewportLocation.x) && PlayerViewportLocation.y == Mathf.Clamp01(PlayerViewportLocation.y))) {
+                this.Shoot();
+            }
 
             if (ShotTimer > 0) ShotTimer -= Time.deltaTime;
             if (!ShotBefore) {
