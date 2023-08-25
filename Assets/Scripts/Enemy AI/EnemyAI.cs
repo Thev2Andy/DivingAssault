@@ -107,7 +107,7 @@ public class EnemyAI : MonoBehaviour
             if (Player != null)
             {
                 Collider.enabled = false;
-                RaycastHit2D PlayerRaycast = Physics2D.Raycast(this.transform.position, (Player.transform.position - this.transform.position), DetectionRange, ShootingLayerMask);
+                RaycastHit2D PlayerRaycast = Physics2D.Raycast(this.transform.position, (Player.transform.position - this.transform.position), DetectionRange, DetectionLayerMask);
                 Collider.enabled = true;
 
                 if (PlayerRaycast.transform == Player)

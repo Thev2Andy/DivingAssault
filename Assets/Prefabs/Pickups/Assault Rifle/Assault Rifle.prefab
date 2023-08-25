@@ -147,7 +147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb4b6eafa0a72cf47aed59c34cb99745, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TotalLifetime: 30
+  TotalLifetime: 45
 --- !u!1 &8979541367088957967
 GameObject:
   m_ObjectHideFlags: 0
@@ -327,4 +327,4 @@ MonoBehaviour:
   - {x: -0.44755757, y: 0.04059464, z: 0}
   m_ShapePathHash: -842138874
   m_Mesh: {fileID: 0}
-  m_InstanceId: 88436
+  m_InstanceId: -1578110

@@ -144,7 +144,7 @@ MonoBehaviour:
   DetectionRange: 100
   DetectionLayerMask:
     serializedVersion: 2
-    m_Bits: 17719
+    m_Bits: 34103
   AttackRange: 2.95
   InitialStaticRagdollTorqueMultiplier: 1.45
   InitialRagdollTorque: 16.5

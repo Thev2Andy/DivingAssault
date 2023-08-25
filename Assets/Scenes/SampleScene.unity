@@ -1047,21 +1047,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Assault Rifle
       objectReference: {fileID: 0}
-    - target: {fileID: 8979541366186314557, guid: c3118616f4c47574b93c9e60120ebc4b,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8979541367449921176, guid: c3118616f4c47574b93c9e60120ebc4b,
         type: 3}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1553443810}
-    - target: {fileID: 8979541367449921176, guid: c3118616f4c47574b93c9e60120ebc4b,
-        type: 3}
-      propertyPath: m_InstanceId
-      value: -1578110
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3118616f4c47574b93c9e60120ebc4b, type: 3}
 --- !u!1 &683301105
