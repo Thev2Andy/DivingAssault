@@ -9018,7 +9018,8 @@ MonoBehaviour:
     Launch: 1
     DespawnOutsideViewport: 1
   SpawnRules:
-  - Objects:
+  - Identifier: Regular Waves (Pistol & SMG)
+    Objects:
     - Identifier: Pistol Enemy
       Delay: 0
       Count: 1
@@ -9027,30 +9028,51 @@ MonoBehaviour:
       Delay: 1.95
       Count: 1
       PerInstanceDelay: 0
-    Condition: ^Wave < 7^
-  - Objects:
+    Condition: $^Wave < 7^ | ^Wave % 3 = 0^$
+  - Identifier: Sniper Introduction
+    Objects:
     - Identifier: Sniper Rifle Enemy
       Delay: 0
       Count: 1
       PerInstanceDelay: 0
     Condition: $(^Wave % 7 = 0^) & ^Wave > 0^$
-  - Objects:
+  - Identifier: Medkits & Crates
+    Objects:
     - Identifier: Medkit
       Delay: 3
-      Count: 2
-      PerInstanceDelay: 1
+      Count: 1
+      PerInstanceDelay: 0
     - Identifier: Crate
       Delay: 1
-      Count: 3
-      PerInstanceDelay: 1
+      Count: 1
+      PerInstanceDelay: 0
     Condition: ^Wave % 2 = 1^
-  - Objects:
+  - Identifier: Regular Waves (Assault Rifle)
+    Objects:
     - Identifier: Assault Rifle Enemy
       Delay: 0
       Count: 2
       PerInstanceDelay: 0
     Condition: ^Wave > 7^
-  BaseWaveInterval: 16.5
+  - Identifier: Medium Difficulty Waves (Assault Rifle)
+    Objects:
+    - Identifier: Assault Rifle Enemy
+      Delay: 0
+      Count: 2
+      PerInstanceDelay: 0
+    Condition: $^Wave > 7^ & ^Wave % 3 = 0^$
+  - Identifier: Difficult Waves (Assault Rifle)
+    Objects:
+    - Identifier: Assault Rifle Enemy
+      Delay: 0
+      Count: 3
+      PerInstanceDelay: 0
+    - Identifier: Sniper Rifle Enemy
+      Delay: 3
+      Count: 1
+      PerInstanceDelay: 0
+    Condition: $^Wave > 7^ & ^Wave % 14 = 0^$
+  BaseWaveInterval: 6.5
   StartDelay: 4.95
   DifficultyAffectsSpawnInterval: 1
   TimeAllowedOutsideViewport: 15
@@ -9747,7 +9769,7 @@ MonoBehaviour:
   SoundtrackSource: {fileID: 3538511223742956188}
   Soundtracks:
   - {fileID: 8300000, guid: ea277337220278c45b6cde7862a46239, type: 3}
-  - {fileID: 8300000, guid: bec9deced87b5214ba096281f2ac9146, type: 3}
+  - {fileID: 8300000, guid: 071d6ebcc129ad0498e52180dff7a6a7, type: 3}
   - {fileID: 8300000, guid: d249cefb458bbce4a8aaec3a81386079, type: 3}
   - {fileID: 8300000, guid: 9e291f978a085964488f9bd5aec92bd5, type: 3}
 --- !u!82 &3538511223742956188
@@ -13707,7 +13729,7 @@ MonoBehaviour:
   - {x: -0.49913645, y: 0.49988115, z: 0}
   m_ShapePathHash: 1824833989
   m_Mesh: {fileID: 0}
-  m_InstanceId: -1893184
+  m_InstanceId: -229958
 --- !u!1 &8582601119112213511
 GameObject:
   m_ObjectHideFlags: 0
