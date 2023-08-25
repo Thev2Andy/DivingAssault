@@ -37,6 +37,7 @@ public class WaveSystem : MonoBehaviour
     private float WaveCountdown;
 
     // Properties..
+    public bool IsSpawningWave { get; private set; }
     public int Wave { get; private set; }
 
     // Singletons..
@@ -46,6 +47,7 @@ public class WaveSystem : MonoBehaviour
     public IEnumerator SpawnWave(bool ShowUI = true)
     {
         WaveCountdown = BaseWaveInterval / ((DifficultyAffectsSpawnInterval) ? Mathf.Clamp(((int.Parse((Settings.Get("Difficulty", 1).ToString()))) + 1), 1, int.MaxValue) : 1f);
+        IsSpawningWave = true;
         Wave += 1;
         if (ShowUI) {
             this.ShowWaveUI();
@@ -109,6 +111,8 @@ public class WaveSystem : MonoBehaviour
                 }
             }
         }
+
+        IsSpawningWave = false;
     }
 
     public void ShowWaveUI()
@@ -143,7 +147,10 @@ public class WaveSystem : MonoBehaviour
         WaveUILifetime = Mathf.Max((WaveUILifetime - Time.deltaTime), 0f);
         WaveUI.alpha = Mathf.SmoothDamp(WaveUI.alpha, ((WaveUILifetime > 0f) ? 1f : 0f), ref WaveUIVelocity, (1 - Mathf.Exp(-WaveUIInterpolationTime * Time.deltaTime)));
 
-        WaveCountdown = Mathf.Max((WaveCountdown - Time.deltaTime), 0f);
+        if (!IsSpawningWave) {
+            WaveCountdown = Mathf.Max((WaveCountdown - Time.deltaTime), 0f);
+        }
+
         if (WaveCountdown <= 0f && !HealthSystem.IsDead) {
             StartCoroutine(SpawnWave(true));
         }
@@ -165,6 +172,7 @@ public class WaveSystem : MonoBehaviour
 
     [System.Serializable] public class SpawnRule
     {
+        public string Identifier;
         public SpawnRule.Object[] Objects;
         public string Condition;
 

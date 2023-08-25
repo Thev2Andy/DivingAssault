@@ -10345,7 +10345,7 @@ MonoBehaviour:
   MuzzleFlash: {fileID: 335218355507403221}
   ShootSound: {fileID: 8300000, guid: e1d05ebaec295e148880077a7cd971ee, type: 3}
   Range: 150
-  Damage: 450
+  Damage: 99
   LayerMask:
     serializedVersion: 2
     m_Bits: 34103
