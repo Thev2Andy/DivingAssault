@@ -9103,7 +9103,8 @@ MonoBehaviour:
       Delay: 0
       Count: 3
       PerInstanceDelay: 0
-    Condition: $(^(Wave % (14 + Floor(Rand(-2, 2)))) = 0^) & (^Rand(0, 1) < 0.25^)$
+    Condition: $(^(Wave % (14 + Floor(Rand(-2, 2)))) = 0^) & (^Rand(0, 1) < 0.25^)
+      & (^Wave > 7^)$
   BaseWaveInterval: 9.5
   StartDelay: 4.95
   DifficultyAffectsSpawnInterval: 1
@@ -9814,7 +9815,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.25
+  m_Volume: 0.45
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -13759,7 +13760,7 @@ MonoBehaviour:
   - {x: -0.49913645, y: 0.49988115, z: 0}
   m_ShapePathHash: 1824833989
   m_Mesh: {fileID: 0}
-  m_InstanceId: 164056
+  m_InstanceId: -1434
 --- !u!1 &8582601119112213511
 GameObject:
   m_ObjectHideFlags: 0
