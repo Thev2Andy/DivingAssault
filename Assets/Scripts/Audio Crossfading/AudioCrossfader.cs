@@ -37,11 +37,10 @@ public class AudioCrossfader : MonoBehaviour
         {
             this.FadeDuration = FadeDuration;
 
-            foreach (IEnumerator I in Faders)
+            foreach (IEnumerator Fader in Faders)
             {
-                if (I != null)
-                {
-                    StopCoroutine(I);
+                if (Fader != null) {
+                    StopCoroutine(Fader);
                 }
             }
 
@@ -61,7 +60,7 @@ public class AudioCrossfader : MonoBehaviour
         }
     }
 
-    IEnumerator FadeAudioSource(AudioSource Player, float Duration, float TargetVolume, System.Action FinishedCallback)
+    private IEnumerator FadeAudioSource(AudioSource Player, float Duration, float TargetVolume, System.Action FinishedCallback)
     {
         int Steps = ((int)(VolumeChangesPerSecond * Duration));
         float StepTime = Duration / Steps;
@@ -75,8 +74,7 @@ public class AudioCrossfader : MonoBehaviour
 
         Player.volume = TargetVolume;
 
-        if (FinishedCallback != null)
-        {
+        if (FinishedCallback != null) {
             FinishedCallback();
         }
     }
