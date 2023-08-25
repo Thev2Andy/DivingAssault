@@ -71,8 +71,8 @@ public class WaveSystemContext : IContext
             return (Decimal)Math.Truncate((double)Arguments[0]);
         }
 
-        if (Identifier.ToUpper() == "RND"){
-            return (Decimal)UnityEngine.Random.value;
+        if (Identifier.ToUpper() == "RAND"){
+            return (Decimal)UnityEngine.Random.Range((float)Arguments[0], (float)Arguments[1]);
         }
 
         throw new Exception("Unknown function name `" + Identifier + "`.");

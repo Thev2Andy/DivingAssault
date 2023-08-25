@@ -15,8 +15,6 @@ public class WaveSystem : MonoBehaviour
     public float StartDelay;
     public bool DifficultyAffectsSpawnInterval;
     public float TimeAllowedOutsideViewport;
-    public float LinearLaunchSpeed;
-    public float AngularLaunchSpeed;
 
     [Header("References.")]
     public HealthSystem HealthSystem;
@@ -94,9 +92,7 @@ public class WaveSystem : MonoBehaviour
                             yield return new WaitForSeconds(SpawnruleObject.Delay);
                         }
 
-
                         int ObjectDefinitionIndex = this.ResolveObjectByIdentifier(SpawnruleObject.Identifier);
-
 
                         Vector2 SpawnPoint = Camera.ViewportToWorldPoint(this.GetRandomPositionOutsideViewport());
                         GameObject SpawnedObject = Instantiate(AvailableObjects[ObjectDefinitionIndex].Object, SpawnPoint, Quaternion.identity);
@@ -104,8 +100,8 @@ public class WaveSystem : MonoBehaviour
                         if (AvailableObjects[I].Launch && SpawnedObject.TryGetComponent<Rigidbody2D>(out Rigidbody2D Rigidbody))
                         {
                             Vector2 LaunchTarget = Camera.ViewportToWorldPoint(new Vector3(Random.value, Random.value));
-                            Rigidbody.velocity = (LaunchTarget - SpawnPoint).normalized * LinearLaunchSpeed;
-                            Rigidbody.angularVelocity = Random.value * AngularLaunchSpeed;
+                            Rigidbody.velocity = (LaunchTarget - SpawnPoint).normalized * AvailableObjects[ObjectDefinitionIndex].LinearLaunchSpeed;
+                            Rigidbody.angularVelocity = AvailableObjects[I].AngularLaunchSpeed;
                         }
                     }
                 }
@@ -191,8 +187,16 @@ public class WaveSystem : MonoBehaviour
     {
         public string Identifier;
         public GameObject Object;
-        public bool Launch;
+
+        [Space]
+
         public bool DespawnOutsideViewport;
+
+        [Space]
+
+        public float LinearLaunchSpeed;
+        public float AngularLaunchSpeed;
+        public bool Launch;
     }
 
     public class SpawnedObject

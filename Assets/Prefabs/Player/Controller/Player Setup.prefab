@@ -8971,52 +8971,72 @@ MonoBehaviour:
   - Identifier: Assault Rifle
     Object: {fileID: 8979541366186314557, guid: c3118616f4c47574b93c9e60120ebc4b,
       type: 3}
-    Launch: 1
     DespawnOutsideViewport: 1
+    LinearLaunchSpeed: 15
+    AngularLaunchSpeed: 6.75
+    Launch: 1
   - Identifier: Pistol
     Object: {fileID: 8979541366186314557, guid: 2a3492c4027e0224b9bab05617243a4c,
       type: 3}
-    Launch: 1
     DespawnOutsideViewport: 1
+    LinearLaunchSpeed: 15
+    AngularLaunchSpeed: 6.75
+    Launch: 1
   - Identifier: SMG
     Object: {fileID: 31567163190231925, guid: 58993612412d9854d8c247388da9f587, type: 3}
-    Launch: 1
     DespawnOutsideViewport: 1
+    LinearLaunchSpeed: 15
+    AngularLaunchSpeed: 6.75
+    Launch: 1
   - Identifier: Sniper Rifle
     Object: {fileID: 8979541366186314557, guid: 53d571b8e55ccb6438e842a5f373c3eb,
       type: 3}
-    Launch: 1
     DespawnOutsideViewport: 1
+    LinearLaunchSpeed: 15
+    AngularLaunchSpeed: 6.75
+    Launch: 1
   - Identifier: Assault Rifle Enemy
     Object: {fileID: 3914128649168389708, guid: be9a6b89f655a724a8dee19b9467ffab,
       type: 3}
-    Launch: 0
     DespawnOutsideViewport: 0
+    LinearLaunchSpeed: 0
+    AngularLaunchSpeed: 0
+    Launch: 0
   - Identifier: Pistol Enemy
     Object: {fileID: 6428259396521315310, guid: 580c477c0a7404e42b6ef9b597bebecb,
       type: 3}
-    Launch: 0
     DespawnOutsideViewport: 0
+    LinearLaunchSpeed: 0
+    AngularLaunchSpeed: 0
+    Launch: 0
   - Identifier: SMG Enemy
     Object: {fileID: 3914128649168389708, guid: eff2573d4a737bb4d8fb69ee9b2a4a36,
       type: 3}
-    Launch: 0
     DespawnOutsideViewport: 0
+    LinearLaunchSpeed: 0
+    AngularLaunchSpeed: 0
+    Launch: 0
   - Identifier: Sniper Rifle Enemy
     Object: {fileID: 6428259396521315310, guid: 314b01b81c794bb4e9db4f4d303f4295,
       type: 3}
-    Launch: 0
     DespawnOutsideViewport: 0
+    LinearLaunchSpeed: 0
+    AngularLaunchSpeed: 0
+    Launch: 0
   - Identifier: Crate
     Object: {fileID: 3180764678196646231, guid: 9cd9c4e668f7ebe478a56f36d58cf6ae,
       type: 3}
-    Launch: 1
     DespawnOutsideViewport: 1
+    LinearLaunchSpeed: 15
+    AngularLaunchSpeed: 5
+    Launch: 1
   - Identifier: Medkit
     Object: {fileID: 8591949117826041388, guid: d8b0f265a950ad247bafdb582fc487d1,
       type: 3}
-    Launch: 1
     DespawnOutsideViewport: 1
+    LinearLaunchSpeed: 15
+    AngularLaunchSpeed: 15
+    Launch: 1
   SpawnRules:
   - Identifier: Regular Waves (Pistol & SMG)
     Objects:
@@ -9054,30 +9074,40 @@ MonoBehaviour:
       Count: 2
       PerInstanceDelay: 0
     Condition: ^Wave > 7^
-  - Identifier: Medium Difficulty Waves (Assault Rifle)
+  - Identifier: Difficult Waves
     Objects:
     - Identifier: Assault Rifle Enemy
       Delay: 0
       Count: 2
       PerInstanceDelay: 0
-    Condition: $^Wave > 7^ & ^Wave % 3 = 0^$
-  - Identifier: Difficult Waves (Assault Rifle)
+    Condition: $^Wave > 7^ & ^Wave % 14 = 0^$
+  - Identifier: Weapon & Health Pickups
     Objects:
-    - Identifier: Assault Rifle Enemy
+    - Identifier: Assault Rifle
+      Delay: 0
+      Count: 1
+      PerInstanceDelay: 0
+    - Identifier: Sniper Rifle
+      Delay: 0
+      Count: 1
+      PerInstanceDelay: 0
+    - Identifier: Pistol
+      Delay: 0
+      Count: 1
+      PerInstanceDelay: 0
+    - Identifier: SMG
+      Delay: 0
+      Count: 1
+      PerInstanceDelay: 0
+    - Identifier: Medkit
       Delay: 0
       Count: 3
       PerInstanceDelay: 0
-    - Identifier: Sniper Rifle Enemy
-      Delay: 3
-      Count: 1
-      PerInstanceDelay: 0
-    Condition: $^Wave > 7^ & ^Wave % 14 = 0^$
-  BaseWaveInterval: 6.5
+    Condition: $(^(Wave % (14 + Floor(Rand(-2, 2)))) = 0^) & (^Rand(0, 1) < 0.25^)$
+  BaseWaveInterval: 9.5
   StartDelay: 4.95
   DifficultyAffectsSpawnInterval: 1
   TimeAllowedOutsideViewport: 15
-  LinearLaunchSpeed: 9.15
-  AngularLaunchSpeed: 14.5
   HealthSystem: {fileID: 4869582368935956509}
   Camera: {fileID: 8582601118808614282}
   AudioSource: {fileID: 8533878505156770582}
