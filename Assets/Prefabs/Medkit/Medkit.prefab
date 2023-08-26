@@ -70,6 +70,8 @@ GameObject:
   - component: {fileID: 8591949117826041384}
   - component: {fileID: 8591949117826041387}
   - component: {fileID: 8591949117826041386}
+  - component: {fileID: -6387117395906426798}
+  - component: {fileID: -8445443703208096790}
   m_Layer: 0
   m_Name: Medkit
   m_TagString: Untagged
@@ -195,3 +197,39 @@ MonoBehaviour:
   PickupSoundVolume: 0.45
   PickupEffect: {fileID: 7051322765016691584, guid: 4d7561ff9d81fac41b4a3c8ad0dd0b83,
     type: 3}
+--- !u!250 &-6387117395906426798
+PointEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8591949117826041388}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 512
+  m_ForceMagnitude: 4.5
+  m_ForceVariation: 0
+  m_DistanceScale: 1
+  m_ForceSource: 0
+  m_ForceTarget: 0
+  m_ForceMode: 2
+  m_Drag: 0
+  m_AngularDrag: 0
+--- !u!58 &-8445443703208096790
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8591949117826041388}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 1
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 4.95
