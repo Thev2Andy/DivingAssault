@@ -44,7 +44,7 @@ public class Fader : MonoBehaviour
     {
         if (IsFadingOut)
         {
-            FaderImage.color = new Color(FaderImage.color.r, FaderImage.color.g, FaderImage.color.b, Mathf.Lerp(FaderImage.color.a, 0f, (1 - Mathf.Exp(-InterpolationTime * Time.deltaTime))));
+            FaderImage.color = new Color(FaderImage.color.r, FaderImage.color.g, FaderImage.color.b, Mathf.Lerp(FaderImage.color.a, 0f, (1 - Mathf.Exp(-InterpolationTime * Time.unscaledDeltaTime))));
             if (FaderImage.color.a <= FadeOutThreshold)
             {
                 FaderImage.color = new Color(FaderImage.color.r, FaderImage.color.g, FaderImage.color.b, 0f);
@@ -56,7 +56,7 @@ public class Fader : MonoBehaviour
 
         if (IsFadingIn)
         {
-            FaderImage.color = new Color(FaderImage.color.r, FaderImage.color.g, FaderImage.color.b, Mathf.Lerp(FaderImage.color.a, 1f, (1 - Mathf.Exp(-InterpolationTime * Time.deltaTime))));
+            FaderImage.color = new Color(FaderImage.color.r, FaderImage.color.g, FaderImage.color.b, Mathf.Lerp(FaderImage.color.a, 1f, (1 - Mathf.Exp(-InterpolationTime * Time.unscaledDeltaTime))));
             if (FaderImage.color.a >= (1f - FadeInThreshold))
             {
                 FaderImage.color = new Color(FaderImage.color.r, FaderImage.color.g, FaderImage.color.b, 1f);

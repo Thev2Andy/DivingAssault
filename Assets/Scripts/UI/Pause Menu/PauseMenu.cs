@@ -7,9 +7,11 @@ public class PauseMenu : MonoBehaviour
 {
     public HealthSystem HealthSystem;
     public GameObject Background;
+    public CanvasGroup PauseUIGroup;
     public GameObject PauseUI;
     public GameObject[] OtherUserInterfaces;
     public int MenuSceneIndex;
+    public float AlphaInterpolationTime;
 
     // Private / Hidden variables..
     private float OldTimescale;
@@ -74,7 +76,14 @@ public class PauseMenu : MonoBehaviour
         IsPaused = false;
     }
 
-    public void Quit() {
+    public void Quit()
+    {
+        Fader.Instance.OnFadeIn += QuitToMainMenu;
+        Fader.Instance.FadeIn(AlphaInterpolationTime);
+        PauseUIGroup.blocksRaycasts = false;
+    }
+
+    private void QuitToMainMenu() {
         SceneManager.LoadSceneAsync(MenuSceneIndex);
     }
 

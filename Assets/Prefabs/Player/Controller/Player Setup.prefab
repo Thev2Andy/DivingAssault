@@ -4114,6 +4114,7 @@ GameObject:
   - component: {fileID: 5624970393578942022}
   - component: {fileID: 6465373433084444684}
   - component: {fileID: 727291082546012946}
+  - component: {fileID: 7157138934382613939}
   m_Layer: 0
   m_Name: Pause Menu
   m_TagString: Untagged
@@ -4139,7 +4140,7 @@ RectTransform:
   - {fileID: 943864734030553825}
   - {fileID: 2209619468117802763}
   m_Father: {fileID: 8582601118653876283}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -4160,6 +4161,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HealthSystem: {fileID: 4869582368935956509}
   Background: {fileID: 2671729752504466677}
+  PauseUIGroup: {fileID: 7157138934382613939}
   PauseUI: {fileID: 2671729752540954702}
   OtherUserInterfaces:
   - {fileID: 2671729752006107151}
@@ -4167,6 +4169,7 @@ MonoBehaviour:
   - {fileID: 3791861691743666124}
   - {fileID: 4018839833523671058}
   MenuSceneIndex: 0
+  AlphaInterpolationTime: 15
 --- !u!114 &5624970393578942022
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4213,6 +4216,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   VolumeButton: {fileID: 203940690282927076}
   MuteButton: {fileID: 779208477040291543}
+--- !u!225 &7157138934382613939
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2671729750941633886}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &2671729751165701082
 GameObject:
   m_ObjectHideFlags: 0
@@ -12994,7 +13009,7 @@ RectTransform:
   m_Children:
   - {fileID: 2671729751953535231}
   m_Father: {fileID: 8582601118653876283}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -14283,8 +14298,8 @@ RectTransform:
   m_Children:
   - {fileID: 2671729751165701085}
   - {fileID: 766474573517081798}
-  - {fileID: 8808593910861173254}
   - {fileID: 2671729750941633873}
+  - {fileID: 8808593910861173254}
   m_Father: {fileID: 8582601119608666530}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -14818,7 +14833,7 @@ MonoBehaviour:
   - {x: -0.49913645, y: 0.49988115, z: 0}
   m_ShapePathHash: 1824833989
   m_Mesh: {fileID: 0}
-  m_InstanceId: 55016
+  m_InstanceId: 110124
 --- !u!1 &8582601119112213511
 GameObject:
   m_ObjectHideFlags: 0
