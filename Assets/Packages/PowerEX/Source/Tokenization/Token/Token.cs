@@ -84,6 +84,27 @@ namespace PowerEX
         #endregion
         LessThan,
 
+        #region And Enum Entry XML
+        /// <summary>
+        /// And logical operator.
+        /// </summary>
+        #endregion
+        And,
+
+        #region Or Enum Entry XML
+        /// <summary>
+        /// Or logical operator.
+        /// </summary>
+        #endregion
+        Or,
+
+        #region Not Enum Entry XML
+        /// <summary>
+        /// Not logical operator.
+        /// </summary>
+        #endregion
+        Not,
+
         #region Equal Enum Entry XML
         /// <summary>
         /// Equal comparison, returns `1` if true.

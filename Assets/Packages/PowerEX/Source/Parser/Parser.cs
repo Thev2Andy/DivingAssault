@@ -59,6 +59,16 @@ namespace PowerEX
                     Operation = ((A, B) => A - B);
                 }
 
+                else if (Tokenizer.Token == Token.And)
+                {
+                    Operation = ((A, B) => ((A != 0 && B != 0) ? 1m : 0m));
+                }
+
+                else if (Tokenizer.Token == Token.Or)
+                {
+                    Operation = ((A, B) => ((A != 0 || B != 0) ? 1m : 0m));
+                }
+
                 else if (Tokenizer.Token == Token.GreaterThan)
                 {
                     Operation = ((A, B) => ((A > B) ? 1m : 0m));
@@ -132,6 +142,13 @@ namespace PowerEX
                 Tokenizer.NextToken();
                 INode RightHandSide = ParseUnary();
                 return new UnaryNode(RightHandSide, ((A) => -A));
+            }
+
+            if (Tokenizer.Token == Token.Not)
+            {
+                Tokenizer.NextToken();
+                INode RightHandSide = ParseUnary();
+                return new UnaryNode(RightHandSide, ((A) => ((A == 0) ? 1m : 0m)));
             }
 
             return ParseLeaf();

@@ -91,6 +91,21 @@ namespace PowerEX
                     Token = Token.Modulus;
                     return;
 
+                case '&':
+                    this.NextCharacter();
+                    Token = Token.And;
+                    return;
+
+                case '|':
+                    this.NextCharacter();
+                    Token = Token.Or;
+                    return;
+
+                case '!':
+                    this.NextCharacter();
+                    Token = Token.Not;
+                    return;
+
                 case '>':
                     this.NextCharacter();
                     Token = Token.GreaterThan;

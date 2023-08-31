@@ -9799,14 +9799,14 @@ MonoBehaviour:
       Delay: 1.95
       Count: 1
       PerInstanceDelay: 0
-    Condition: $^Wave < 7^ | ^Wave % 3 = 0^$
+    Condition: (Wave < 7) | (Wave % 3 = 0)
   - Identifier: Sniper Introduction
     Objects:
     - Identifier: Sniper Rifle Enemy
       Delay: 0
       Count: 1
       PerInstanceDelay: 0
-    Condition: $(^Wave % 7 = 0^) & ^Wave > 0^$
+    Condition: (Wave % 7 = 0) & (Wave > 0)
   - Identifier: Medkits & Crates
     Objects:
     - Identifier: Medkit
@@ -9817,21 +9817,21 @@ MonoBehaviour:
       Delay: 1
       Count: 1
       PerInstanceDelay: 0
-    Condition: ^Wave % 2 = 1^
+    Condition: Wave % 2 = 1
   - Identifier: Regular Waves (Assault Rifle)
     Objects:
     - Identifier: Assault Rifle Enemy
       Delay: 0
       Count: 2
       PerInstanceDelay: 0
-    Condition: ^Wave > 7^
+    Condition: Wave > 7
   - Identifier: Difficult Waves
     Objects:
     - Identifier: Assault Rifle Enemy
       Delay: 0
       Count: 2
       PerInstanceDelay: 0
-    Condition: $^Wave > 7^ & ^Wave % 14 = 0^$
+    Condition: (Wave > 7) & (Wave % 14 = 0)
   - Identifier: Weapon & Health Pickups
     Objects:
     - Identifier: Assault Rifle
@@ -9854,8 +9854,8 @@ MonoBehaviour:
       Delay: 0
       Count: 3
       PerInstanceDelay: 0
-    Condition: $(^(Wave % (14 + Floor(Rand(-2, 2)))) = 0^) & (^Rand(0, 1) < 0.25^)
-      & (^Wave > 7^)$
+    Condition: ((Wave % (14 + Floor(Rand(-2, 2)))) = 0) & (Rand(0, 1) < 0.25) & (Wave
+      > 7)
   BaseWaveInterval: 9.5
   StartDelay: 4.95
   DifficultyAffectsSpawnInterval: 1
