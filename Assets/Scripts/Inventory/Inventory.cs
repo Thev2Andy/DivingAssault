@@ -58,7 +58,7 @@ public class Inventory : MonoBehaviour
         {
             PromptController.Instance.Show("Press <color=lightblue><b>E</b></color> to pick up.", float.Epsilon);
 
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.E) && !PauseMenu.Instance.IsPaused)
             {
                 PromptController.Instance.Clear();
                 this.Pickup(Pickup);
