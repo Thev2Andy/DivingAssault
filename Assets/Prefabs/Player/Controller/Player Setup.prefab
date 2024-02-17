@@ -13437,6 +13437,7 @@ MonoBehaviour:
   - {fileID: 8582601119450606273}
   - {fileID: 8582601118298181722}
   - {fileID: 7067629344341385125}
+  - {fileID: 115893760}
   KnockbackMultiplier: 1
   StaticRagdollTorqueMultiplier: 1.45
   RagdollTorqueForce: 16.5

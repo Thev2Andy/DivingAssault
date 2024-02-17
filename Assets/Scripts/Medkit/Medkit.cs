@@ -11,7 +11,7 @@ public class Medkit : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D Collision)
     {
-        if (Collision.gameObject.tag == "Player" && Collision.gameObject.TryGetComponent<HealthSystem>(out HealthSystem PlayerHealthSystem) && PlayerHealthSystem.Health < PlayerHealthSystem.InitialHealth)
+        if (Collision.gameObject.CompareTag("Player") && Collision.gameObject.TryGetComponent<HealthSystem>(out HealthSystem PlayerHealthSystem) && PlayerHealthSystem.Health < PlayerHealthSystem.InitialHealth)
         {
             PlayerHealthSystem.Health = PlayerHealthSystem.InitialHealth;
             Camera.main.GetComponent<AudioSource>()?.PlayOneShot(PickupSound, PickupSoundVolume);

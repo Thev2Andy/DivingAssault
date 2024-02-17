@@ -67,7 +67,7 @@ public class HealthSystem : MonoBehaviour
             if (Health <= 0 && !IsDead)
             {
                 GameObject RagdollInstance = Instantiate(RagdollPrefab, this.transform.position, this.transform.rotation);
-                RagdollInstance.GetComponent<SpriteRenderer>().color = PlayerRenderer.color;
+                RagdollInstance.GetComponent<SpriteRenderer>().color = SelectedColor;
 
                 Rigidbody2D RagdollRigidbody = RagdollInstance.GetComponent<Rigidbody2D>();
                 RagdollRigidbody.velocity = Rigidbody.velocity;
@@ -108,16 +108,12 @@ public class HealthSystem : MonoBehaviour
                 DamageLocation = ((DamageLocation != null) ? DamageLocation : new Vector2(this.transform.position.x, this.transform.position.y));
                 Vector2 KnockbackDirection = new Vector2(this.transform.position.x, this.transform.position.y) - new Vector2((((Vector2)DamageLocation).x), (((Vector2)DamageLocation).y));
                 KnockbackDirection.Normalize();
+                Damage = Mathf.Max(Damage, 0);
 
                 Rigidbody.velocity += (KnockbackDirection * (Damage / 5) * KnockbackMultiplier);
 
-
-                if (Damage < Health) {
+                if ((Health - Damage) < Health) {
                     PlayerRenderer.color = DamageColor;
-                }
-
-                else {
-                    PlayerRenderer.color = SelectedColor;
                 }
 
 
